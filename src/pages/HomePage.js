@@ -1,15 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import CourseCard from '../components/CourseCard'; // Reusable component to display courses
+import CourseCard from '../components/CourseCard'; // Ensure this component exists
 
 const HomePage = () => {
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch courses from API (assumed you have an API service)
-        fetch('/api/courses')
-            .then(response => response.json())
-            .then(data => setCourses(data));
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/courses`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+                if (!response.ok) {
+                    window.location.href = '/login';
+                    throw new Error('Failed to fetch courses');
+                }
+                const data = await response.json();
+                setCourses(data);
+            } catch (err) {
+                window.location.href = '/login';
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
     }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div>

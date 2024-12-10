@@ -7,8 +7,15 @@ const CourseList = () => {
 
     useEffect(() => {
         const fetchCourses = async () => {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/courses`);
-            setCourses(response.data);
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/courses`, { headers: { 'Authorization': `Bearer ${token}` } });
+                setCourses(response.data);
+
+            } catch (error) {
+                window.location.href = '/login';
+
+            }
         };
         fetchCourses();
     }, []);

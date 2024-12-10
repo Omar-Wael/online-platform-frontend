@@ -10,8 +10,10 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, { name, email, password, role });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, { name, email, password, role });
+            localStorage.setItem('token', response.data.token);
             alert('Registration successful! You can now login.');
+            window.location.href = '/';
         } catch (error) {
             alert('Error during registration.');
         }

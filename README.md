@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Frontend - Online Learning Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend part of the Online Learning Platform. It is built with React and provides a user interface for students and instructors to interact with courses, lessons, and other platform features.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- **React** - Frontend framework for building interactive user interfaces
+- **React Router** - For navigation between different pages
+- **Axios** - For making HTTP requests to the backend API
+- **CSS** (or SCSS) - For styling the application
+- **JWT** - For user authentication and maintaining session
+- **React Context API / State Management** (Optional)
 
-### `npm start`
+## Setup and Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js (v16 or later)
+- npm or yarn (npm is recommended)
 
-### `npm test`
+### Steps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Omar-Wael/online-learning-platform-frontend.git
+    ```
 
-### `npm run build`
+2. Install the dependencies:
+    ```bash
+    cd online-learning-platform-frontend
+    npm install
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Create a `.env` file in the root directory and add the following environment variables:
+    ```
+    REACT_APP_API_URL=<your_backend_api_url>
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Run the development server:
+    ```bash
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Open the application in your browser: `http://localhost:3000`.
 
-### `npm run eject`
+### Available Routes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `/` - Home page displaying available courses.
+- `/courses/:id` - Detailed view of a course.
+- `/courses/:id/lessons/:lessonId` - Detailed view of a lesson.
+- `/login` - User login page.
+- `/register` - User registration page (if applicable).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Student:** 
+  - View list of courses
+  - Enroll in courses
+  - View lessons and supporting materials
+  
+- **Instructor:** 
+  - Create, edit, and delete courses
+  - Create, edit, and delete lessons within courses
+  
+## Authentication
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- User authentication is handled using JWT.
+- Store JWT token in `localStorage` after login.
+  
+## Deployment
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can deploy the app on any static hosting platform (Netlify, Vercel, GitHub Pages).

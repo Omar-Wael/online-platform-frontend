@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -8,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const login = async (credentials) => {
-        const response = await axios.post('/api/login', credentials);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, credentials);
         const { token, user } = response.data;
 
         localStorage.setItem('token', token);
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
-                const response = await axios.get('/api/user', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/user`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUser(response.data);

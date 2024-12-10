@@ -6,7 +6,8 @@ const StudentDashboard = () => {
 
     useEffect(() => {
         const fetchEnrollments = async () => {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/student/enrollments`);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/enrollments`, { headers: { 'Authorization': `Bearer ${token}` } });
             setEnrollments(response.data);
         };
         fetchEnrollments();
@@ -18,7 +19,7 @@ const StudentDashboard = () => {
             <ul>
                 {enrollments.map((enrollment) => (
                     <li key={enrollment.course.id}>
-                        {enrollment.course.title}
+                        {enrollment.course.title} - Progress: {enrollment.progress}%.
                     </li>
                 ))}
             </ul>
